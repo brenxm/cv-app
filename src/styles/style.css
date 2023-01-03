@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+}
+
+.main-viewport {
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    display: flex;
+}
+
+.form-main-container {
+    height: 100vh;
+    flex: 1;
+}
+
+.cv-result-container {
+    height: 100vh;
+    flex: 1;
+}
+
+.single-input {
+    padding: 20px;
+}
+
+.label-input {
+    position: absolute;
+    font-size: 14px;
+    top: 10px;
+    left: 30px;
+    background-color: white;
+    padding: 0 3px;
+    color:rgb(45, 45, 45)
+}
+
+.text-inputs {
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 15px;
+    height: 25px;
+    border: 1px solid black;
+}
