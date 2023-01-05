@@ -6,9 +6,9 @@ class SingleInput extends React.Component{
     }
 
     render(){
-        const {placeHolder, label, elemName} = this.props;
+        const {placeHolder, label, elemName, id} = this.props;
         return (
-            <div className='single-input'>
+            <div className='single-input' id={id}>
                 <label className="label-input" htmlFor={elemName}>{label}</label>
                 <input className="text-inputs" name={elemName} placeholder={placeHolder}></input>
             </div>
