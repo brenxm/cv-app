@@ -7,13 +7,10 @@ class Education extends React.Component {
         super(props);
 
         this.state = {
-            deleteBtnText: "",
             id: null
         };
 
-        this.generateYears = this.generateYears.bind(this);
-        this.deleteBtnOnMouseEnter = this.deleteBtnOnMouseEnter.bind(this);
-        this. deleteBtnOnMouseExit = this.deleteBtnOnMouseExit.bind(this);
+        this.removeBtn = this.removeBtn.bind(this);
     }   
 
     /**
@@ -48,19 +45,9 @@ class Education extends React.Component {
         })
     }
 
-    // Style //
-    deleteBtnOnMouseEnter() {
-        this.setState({
-            deleteBtnText: "Remove?"
-        })
+    removeBtn(e) {
+        this.props.removeBtn(this.state.id, e);
     }
-
-    deleteBtnOnMouseExit() {
-        this.setState({
-            deleteBtnText: ""
-        })
-    }
-    // End Style //
 
     render() {
         return (
@@ -68,7 +55,7 @@ class Education extends React.Component {
                 <div className="edu-form-single-title">{this.props.title}</div>
                 <SingleInput id="one"placeHolder="Saint Augutine's School" label="School name *" elemName="schoolName" />
                 <SingleInput id="two"placeHolder="Houston" label="City *" elemName="schoolCity" />
-                <DropdownInput id="three"label="State *" selection={["BD", "AZ", "TX"]} elemName="schoolState" />
+                <DropdownInput id="three" label="State *" selection={['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']} elemName="schoolState" />
                 <div id="four">
                     <DropdownInput label="Type *" selection={["Technical", "Graduate degree", "Bye"]} elemName="degreeType" />
                     <SingleInput placeHolder="Nursing" label="Major" elemName="major" />
@@ -76,7 +63,7 @@ class Education extends React.Component {
                 <DropdownInput id="five"label="Completed *" selection={["Yes", "No", "Current"]} elemName="schoolCompletion" />
                 <DropdownInput id="six"label="Month *" selection={["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]} elemName="monthCompletion" />
                 <DropdownInput id="seven"label="Year *" selection={this.generateYears(1900)} elemName="yearCompletion" />
-                <button onMouseEnter={this.deleteBtnOnMouseEnter} onMouseLeave = {this.deleteBtnOnMouseExit}className="edu-form-delete-btn">{this.state.deleteBtnText}</button>
+                <button onClick={this.removeBtn} className="edu-form-delete-btn">Delete?</button>
             </form>
         );
     }

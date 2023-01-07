@@ -28,7 +28,7 @@ class PersonalInfo extends React.Component {
                         <SingleInput placeHolder="(777) 777-7777 " elemName="telNumber" label="Number *" />
                     </div>
                     <div className="zipcode-cont">
-                        <DropdownInput elemName="state" label="State *" selection={["tx", "cd", "am", "dc"]} />
+                        <DropdownInput elemName="state" label="State *" selection={['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']} />
                     </div>
                 </div>
                 <div className="upload-btn-cont">

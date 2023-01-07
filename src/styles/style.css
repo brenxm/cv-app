@@ -175,7 +175,7 @@ body {
     padding: 10px 0;
 }
 
-.education-form #one {
+.education-form>#one {
     grid-row: 1;
     grid-column: 1/4;
 }
@@ -188,13 +188,10 @@ body {
 .education-form>#four {
     grid-row: 3;
     grid-column: 1/4;
-}
-
-#four {
     display: flex;
 }
 
-#four>div {
+.education-form>#four>div {
     flex: 1;
 }
 
@@ -223,9 +220,103 @@ body {
     cursor: pointer;
     transition: 0.1s;
     width: 10px;
+    color: transparent;
+    font-size: 0;
 }
 
 .edu-form-delete-btn:hover {
     width: 100px;
     height: 20px;
+    color: black;
+    font-size: 14px;
+}
+
+
+/* Workexperience single FORM */
+.work-form {
+    background-color: white;
+    border-radius: 15px;
+    height: fit-content;
+    min-width: 500px;
+    max-width: 700px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 50px);
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.work-form>#one {
+    grid-row: 1;
+    grid-column: 1/3;
+}
+
+.work-form>#two {
+    grid-row: 2;
+    grid-column: 1/3;
+}
+
+.work-form>#three {
+    grid-row: 3;
+    grid-column: 1/4;
+    display: flex;
+}
+
+.work-form>#three>div {
+    flex: 1;
+}
+
+.work-form>#four {
+    grid-row: 2;
+    grid-column: 3/4;
+}
+
+.work-form>#five {
+    grid-row: 4;
+    grid-column: 1/2;
+}
+
+.work-form>#six {
+    grid-row: 4;
+    grid-column: 2/3;
+}
+
+.work-form>#seven {
+    grid-row: 4;
+    grid-column: 3/4;
+}
+
+.work-form>#eight {
+    grid-row: span 2;
+    grid-column: 1/4;
+    height: 90px;
+    margin: 20px;
+    position: relative;
+}
+
+.work-form>#eight>textarea {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.work-form>#eight>div {
+    position: absolute;
+    font-size: 13px;
+    bottom: 0px;
+    right: 3px;
+    color: gray;
+}
+
+.work-form>#eight>span {
+    color: rgb(78, 78, 78);
+    padding: 0 5px;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    top: -10px;
+    left: 15px;
 }
