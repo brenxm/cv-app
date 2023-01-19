@@ -1,67 +1,47 @@
 import PersonalInfo from "./components/personalinfo";
 import SectionTitles from "./components/sectiontitles";
-import Button from "./components/button";
-import Education from "./components/education";
-import WorkEperience from "./components/workexperience";
+import { Education } from "./components/education";
 import React from "react";
-
+import { Experiences } from "./components/workexperience"
+import { validateInputs, validateEachForm } from "./helper";
+import Form from "./components/formsheet";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // References
+    this.personalInfo = React.createRef();
+    this.education = React.createRef();
+    this.experiences = React.createRef();
 
-    this.state = {
-      educations: [],
-      workExperiences: []
+    this.getDataInputs = this.getDataInputs.bind(this);
+  }
+
+  // Return as values if all data as valid, else return false
+  getDataInputs(e) {
+    const { personalInfo, education, experiences } = this;
+    const photo = personalInfo.current.state.uploadedPhoto;
+    const personalInfoData = validateInputs(personalInfo.current.inputs);
+    const eduFormData = validateEachForm(education.current.formRef);
+    const xpFormData = validateEachForm(experiences.current.formRef)
+
+    const dataInputs = [personalInfoData, eduFormData, xpFormData];
+
+    const allInputValid = dataInputs.every(dataResult => dataResult.accepted);
+
+    if (!allInputValid) {
+      return null;
     }
 
-    this.addEducation = this.addEducation.bind(this);
-    this.removeEducation = this.removeEducation.bind(this);
-    this.removeExperience = this.removeExperience.bind(this);
-    this.addExperience = this.addExperience.bind(this);
-  }
+    const data = {
+      uploadedPhoto: photo,
+      personalInfo: personalInfoData,
+      educations: eduFormData.values,
+      experiences: xpFormData.values
+    };
 
-  addEducation() {
-    const count = this.state.educations.length;
-    this.setState({
-      educations: [...this.state.educations, <Education title={"Education " + (count + 1)} key={count} id={count} removeBtn={this.removeEducation}/>]
-    })
-  }
-
-  removeEducation(id, e) {
     e.preventDefault();
-
-   this.setState({
-    educations: this.state.educations.reduce((accu, curr) => {
-      if (curr.key == id){
-        return accu;
-      } 
-      return accu = [...accu, curr];
-    }, [])
-   })
-
-   // Update the count for each education element that was added
-  }
-
-  addExperience() {
-    const count = this.state.workExperiences.length;
-    this.setState({
-      workExperiences: [...this.state.workExperiences, <WorkEperience id={count} key={count} removeBtn={this.removeExperience} title={"Experience " + (count + 1)}/>]
-    })
-  }
-
-  removeExperience(id, e) {
-    e.preventDefault();
-    this.setState({
-      workExperiences: this.state.workExperiences.reduce((accu, curr)=>{
-        if(curr.key == id){
-          return accu;
-        }
-
-        return accu = [...accu, curr];
-      },[])
-    })
-
+    return data;
   }
 
   render() {
@@ -70,21 +50,12 @@ class App extends React.Component {
         <div className="form-main-container">
           <div>
             <SectionTitles title="Personal information" />
-            <PersonalInfo />
+            <PersonalInfo ref={this.personalInfo} />
           </div>
-          <div>
-            <SectionTitles title="Education" />
-            {this.state.educations}
-            <Button fn={this.addEducation} label="Add education" />
-          </div>
-          <div>
-            <SectionTitles title="Work experience" />
-            {this.state.workExperiences}
-            <Button fn={this.addExperience}label="Add work experience" />
-          </div>
+          <Education ref={this.education} />
+          <Experiences ref={this.experiences} />
         </div>
-        <div className="cv-result-container">
-        </div>
+        <Form dataInput={this.getDataInputs} />
       </div>
     );
   }

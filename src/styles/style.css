@@ -2,15 +2,25 @@ body * {
     font-family: Calibri;
 }
 
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+
 body {
     margin: 0;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(245, 245, 245)
 }
 
 .main-viewport {
     background-color: rgb(245, 245, 245);
     min-height: 100vh;
     display: flex;
+    max-width: 1080px;
+    min-width: 900px;
+    flex: 1;
 }
 
 .form-main-container {
@@ -33,14 +43,10 @@ body {
     width: fit-content;
 }
 
-.cv-result-container {
-    height: 100vh;
-    flex: 1;
-}
-
 .single-input {
-    margin: 20px;
     position: relative;
+    margin: 0 10px;
+    margin-bottom: 20px;
 }
 
 .label-input {
@@ -73,11 +79,17 @@ body {
     height: fit-content;
     min-width: 500px;
     max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
-
 
 .personalinfo-nameinput-cont {
     display: flex;
+}
+
+.personalinfo-addressinput-cont {
+    position: relative;
 }
 
 .personalinfo-nameinput-cont div {
@@ -112,7 +124,12 @@ body {
 .upload-btn-cont {
     display: flex;
     justify-content: left;
-    gap: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+.upload-btn-cont :nth-child(3) {
+    position: static;
 }
 
 .upload-btn-cont span {
@@ -128,6 +145,7 @@ body {
     background-color: #59C1B7;
     color: white;
     padding: 6px 24px;
+    cursor: pointer;
 }
 
 
@@ -157,6 +175,9 @@ body {
     background-color: rgb(84, 84, 84);
 }
 
+.single-form-cont {
+    position: relative;
+}
 
 /* Education form */
 
@@ -168,11 +189,12 @@ body {
     max-width: 700px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 50px);
+    grid-template-rows: repeat(4, 65px);
     align-items: center;
     position: relative;
     margin-bottom: 30px;
-    padding: 10px 0;
+    padding: 20px;
+    padding-top: 40px;
 }
 
 .education-form>#one {
@@ -204,6 +226,7 @@ body {
     padding: 2px 15px;
     border-radius: 5px;
     font-size: 13.5px;
+    z-index: 3;
 }
 
 .edu-form-delete-btn {
@@ -241,11 +264,12 @@ body {
     max-width: 700px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 50px);
+    grid-template-rows: repeat(6, 55px);
     align-items: center;
     position: relative;
+    padding: 20px;
+    padding-top: 40px;
     margin-bottom: 30px;
-    padding: 10px 0;
 }
 
 .work-form>#one {
@@ -319,4 +343,178 @@ body {
     font-size: 14px;
     top: -10px;
     left: 15px;
+}
+
+
+
+input[type="file"]:invalid {
+    color: black;
+    width: 80px;
+}
+
+input[type="file"]:valid {
+    color: blue;
+    width: 80px;
+}
+
+input::file-selector-button {
+    color: white;
+    border: none;
+    background-color: #59C1B7;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+}
+
+input::file-selector-text {
+    color: red;
+}
+
+.remove-photo-btn {
+    background-color: #f5e666;
+    border: none;
+    border-radius: 3px;
+    height: 10px;
+    width: 30px;
+    cursor: pointer;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: 0.1s;
+}
+
+.remove-photo-btn:hover {
+    background-image: url("./delete_btn.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 25px;
+    width: 35px;
+}
+
+/* Result container*/
+
+.cv-result-container {
+    min-width: 800px;
+    flex: 1;
+    position: relative;
+}
+
+.form-sheet {
+    background-color: white;
+    flex: 1 1;
+    margin: 40px;
+    border-radius: 30px;
+    box-shadow: 3px 3px 10px rgb(213, 213, 213);
+    width: 600px;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+.form-sheet .form-header {
+    width: 100%;
+}
+
+.form-sheet .form-header>div {
+    text-align: center;
+}
+
+.form-educations {
+    width: 100%;
+    text-align: center;
+    gap: 20px;
+}
+
+.form-educations>div {
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+}
+
+h3 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+}
+
+.main-logo {
+    width: 180px;
+}
+
+.form-sheet>button {
+    font-size: 17px;
+}
+
+.photo-clip {
+    width: 50px;
+    height: 60px;
+    position: absolute;
+    top: 17px;
+    left: 150px;
+}
+
+.photo-badge {
+    position: absolute;
+    background-color: rgb(215, 215, 215);
+    height: 130px;
+    width: 120px;
+    padding: 14px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.121);
+    top: 40px;
+    left: 70px;
+    transform: rotateZ(-10deg);
+}
+
+.photo-badge>img {
+    background-color: rgb(131, 131, 131);
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    border-radius: 4px;
+}
+
+.error-text {
+    font-size: 12px;
+    color: red;
+    margin: 0;
+    margin-left: 10px;
+    visibility: hidden;
+}
+
+.autocomplete-dropdown-selection-cont {
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    top: 30px;
+    width: 90%;
+    padding: 10px 20px;
+    font-size: 17px;
+
+}
+
+.autocomplete-single-cont:hover {
+    background-color: #8dc8c2;
+    cursor: pointer;
+    color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main-viewport {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cv-result-container {
+        display: flex;
+        width: 500px;
+    }
 }

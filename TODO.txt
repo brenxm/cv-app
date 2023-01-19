@@ -1,0 +1,2 @@
+Autocomplete dropdown - Disable / hide dropdown when clicked or pressed ESC key while on focus / selected
+Get all input data and return it as an object to be accessed easily and rendered to the result container

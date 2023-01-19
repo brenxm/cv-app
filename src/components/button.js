@@ -1,16 +1,23 @@
 import React from "react";
 
 class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const { label, fn } = this.props;
+        const { label, onClick } = this.props;
         return (
-           <button onClick={fn} className="addphoto-btn">{label}</button>
+           <button onClick={onClick} className="addphoto-btn">{label}</button>
         );
     }
 }
 
-export default Button;
+class DeleteButton extends React.Component{
+
+    render() {
+        const {onClick, style} = this.props;
+        return (
+            <button className="edu-form-delete-btn" onClick = {onClick} style={style}>Delete?</button>
+        );
+    }
+}
+
+export {DeleteButton, Button};
