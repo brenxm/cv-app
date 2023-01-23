@@ -94,9 +94,25 @@ class EducationForm extends React.Component {
     }
 
     typeOnChange(e) {
+        const selected = e.target.value
+        
+        if (selected == "High school diploma" || selected == "GED"){
+            // Turn off the required property of this input
+            this.setState({
+                majorStyleDisplay: "none"
+            });
+
+            this.inputs["major"].setRequired(true);
+            console.log("turning on");
+            
+            return;
+        }
+        // Else enable visibility and turn on required property
+        
+        console.log("turning off");
+        this.inputs["major"].setRequired(false);
         this.setState({
-            majorStyleDisplay: e.target.value == "High school diploma" || e.target.value == "GED" ? "none" : "block",
-            majorRequired: e.target.value == "High school diploma" || e.target.value == "GED" ? false : true
+            majorStyleDisplay: "block"
         })
     }
 
@@ -141,13 +157,13 @@ class RenderEducation extends React.Component {
     render() {
         const { educations, formDisplay } = this.props
         return (
-            <div className="form-educations" style={{ display: formDisplay }}>
+            <div className="form-educations" style={{ display: formDisplay}}>
                 <h3>Educations</h3>
                 {educations.map(
                     edu => {
                         const { schoolName, schoolCity, schoolState, degreeType, major, monthCompletion, yearCompletion, schoolCompletion, id } = edu;
                         return (
-                            <div key={id} className="education-single-form" style={{marginBottom: "10px"}}>
+                            <div key={id} className="education-single-form" style={{margin: "20px 30px"}}>
                                 <div style={{fontSize: "18px", fontWeight: "550", color: "rgb(40, 40, 40)"}}>
                                     <span>{schoolName},</span>
                                     <span> {schoolCity}</span>

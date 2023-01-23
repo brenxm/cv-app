@@ -119,11 +119,19 @@ class WorkEperience extends React.Component {
     // Style //
 
     positionOnChange(e) {
-        this.setState({
-            specifyDisplay: e.target.value == "Other" ? "block" : "none",
-            specifyRequired: e.target.value == "No" ? true : false
+       if (e.target.value == "Other"){
+        this.inputs["workSpecPos"].setRequired(true);
 
+        this.setState({
+            specifyDisplay: "block"
         })
+        return;
+       } 
+
+       this.inputs["workSpecPos"].setRequired(false);
+
+        this.setState({
+            specifyDisplay: "none"});
     }
 
     dateCompletionOnChange(e) {
@@ -134,13 +142,11 @@ class WorkEperience extends React.Component {
     }
     // End Style //
 
-
-
     render() {
         return (
             <div className="work-form">
-                <SingleInput id="one" placeHolder="Lawyer" label="Work name *" elemName="workExpName" required createRef={this.createInputRef} format={/./} properFormat={"none"} />
-                <SingleInput id="two" placeHolder="" label="City *" elemName="city" required createRef={this.createInputRef} format={/./} properFormat={"none"} />
+                <SingleInput id="one" placeHolder="Google/Microsoft" label="Employer *" elemName="workExpName" required createRef={this.createInputRef} format={/./} properFormat={"none"} />
+                <SingleInput id="two" placeHolder="New York" label="City *" elemName="city" required createRef={this.createInputRef} format={/./} properFormat={"none"} />
                 <DropdownInput id="four" elemName="workExpState" label="State *" selection={['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']} required createRef={this.createInputRef} />
                 <div id="three">
                     <DropdownInput elemName="position" label="Position *" selection={['Accountant', 'Actor', 'Architect', 'Artist', 'Athlete', 'Baker', 'Banker', 'Barber', 'Beautician', 'Biomedical engineer', 'Carpenter', 'Chef', 'Civil engineer', 'Computer programmer', 'Construction worker', 'Counselor', 'Dancer', 'Dentist', 'Designer', 'Doctor', 'Electrician', 'Engineer', 'Firefighter', 'Florist', 'HVAC technician', 'Interior designer', 'Journalist', 'Lawyer', 'Musician', 'Nurse', 'Optometrist', 'Pharmacist', 'Photographer', 'Physical therapist', 'Plumber', 'Police officer', 'Psychologist', 'Real estate agent', 'Restaurant owner', 'Salesperson', 'Scientist', 'Social worker', 'Software developer', 'Teacher', 'Vet', 'Web developer', 'Other']} onChange={this.positionOnChange} createRef={this.createInputRef} />
@@ -164,20 +170,21 @@ class RenderExperience extends React.Component{
     render() {
         const { experiences, formDisplay } = this.props;
         return (
-            <div className="form-experienecs" style={{ display: formDisplay }}>
+            <div className="form-experiences" style={{ display: formDisplay}}>
                 <h3>Experiences</h3>
                 {
                     experiences.map(
                         exp => {
                             const { workExpName, city, workExpState, position, workSpecPos, currentJob, workStartDate, workEndDate, textArea, id } = exp;
                             return (
-                                <div key={id}>
+                                <div key={id} style={{margin: "20px 30px"}}>
                                     <div style={{
                                         display: "flex",
                                         justifyContent: "space-between",
                                         fontSize: "18px",
                                         fontWeight:"550",
-                                        color: "rgb(30, 30, 30)"
+                                        color: "rgb(30, 30, 30)", 
+                                        width: "100%"
                                     }}>
                                         <span>{position == "Other" ? workSpecPos : position}</span>
                                         <span style={{fontWeight: "400", 

@@ -15,15 +15,16 @@ class Form extends React.Component {
             logoDisplay: "block",
             formDisplay: "none",
             formData: { personalInfo: "", educations: [], experiences: [] },
-            generateCvText: "Generate CV"
+            generateCvText: "Generate CV",
+            styleDisplay: "none",
+            imageStyleDisplay: "none"
         }
 
         this.disableLogo = this.disableLogo.bind(this);
         this.displayForm = this.displayForm.bind(this);
     }
 
-    onClick(e) {
-        const data = this.props.dataInput(e);
+    onClick(data) {
 
         if (!data) return;
 
@@ -32,7 +33,9 @@ class Form extends React.Component {
         this.displayForm();
 
         this.setState({
-            generateCvText: "Regenerate CV"
+            generateCvText: "Regenerate CV",
+            styleDisplay: "block",
+            imageStyleDisplay: !data.uploadedPhoto ? "none" : "block"
         })
     }
 
@@ -60,7 +63,7 @@ class Form extends React.Component {
         const { firstName, lastName, addressOne, zipcode, city, state, email, telNumber } = personalInfo;
 
         return (
-            <div className="cv-result-container" >
+            <div className="cv-result-container" style={{display:this.props.styleDisplay}}>
                 <div className="form-sheet">
                     <div className="form-header" style={{ display: formDisplay }}>
                         <h1>{firstName} {lastName}</h1>
@@ -73,15 +76,13 @@ class Form extends React.Component {
 
                     <RenderExperience experiences={experiences} styleDisplay={formDisplay} />
 
-                    <img className="main-logo" src={mainLogo} alt="" style={{ display: logoDisplay }}></img>
-                    <Button label={this.state.generateCvText} onClick={this.onClick} />
                 </div>
-                <div className="photo-badge">
+                <div className="photo-badge" style={{display: this.state.imageStyleDisplay}}>
                     <img alt="" src={uploadedPhoto}>
 
                     </img>
                 </div>
-                <img className="photo-clip" src={photoBadge} alt=""></img>
+                <img className="photo-clip" src={photoBadge} alt="" style={{display: this.state.imageStyleDisplay}}></img>
             </div>
         )
     }

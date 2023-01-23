@@ -39,7 +39,7 @@ class DropdownInput extends React.Component {
         return (
             <div className="single-input" id={id}>
                 <label className="label-input" htmlFor={elemName}>{label}</label>
-                <select className="text-inputs" onChange={onChange} required={required} ref={this.selectInput}>
+                <select className="text-inputs" onChange={onChange} required={required} ref={this.selectInput} style={{backgroundColor: "white"}}>
                     {selection.map(
                         item => <option value={item} key={item}>{item}</option>
                     )}
@@ -110,7 +110,7 @@ class TextAreaInput extends React.Component {
 
         return (
             <div id={id} required={required} >
-                <span>Job description *</span>
+                <span style={{fontSize: "17px"}}>Job description *</span>
                 <textarea onChange={this.onChange} ref={this.textInput} ></textarea >
                 <div id="nine" style={{ color: this.state.textAreaColor }} >{this.state.textAreaCount}</div>
                 <div className="error-text" style={{ visibility: this.state.errorTextVisibility, color: "red", position: "static" }}>{this.state.errorText}</div>

@@ -15,6 +15,8 @@ class SingleInput extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.setFocus = this.setFocus.bind(this);
         this.setValue = this.setValue.bind(this);
+        this.setRequired = this.setRequired.bind(this);
+
         this.inputText = React.createRef();
     }
 
@@ -111,12 +113,18 @@ class SingleInput extends React.Component {
         this.inputText.current.select();
     }
 
+    setRequired(bool) {
+        this.setState({
+            required: bool ? true : false
+        }) 
+    }
+
     render() {
         const { placeHolder, label, id, style, defaultAutoComplete, type } = this.props;
         return (
             <div className='single-input' id={id} style={style} >
                 <label className="label-input" >{label}</label>
-                <input className="text-inputs" name={this.state.elemName} placeholder={placeHolder} onChange={this.onChange} autoComplete={defaultAutoComplete} ref={this.inputText} type={ type }></input>
+                <input className="text-inputs" name={this.state.elemName} placeholder={placeHolder} onChange={this.onChange} autoComplete={defaultAutoComplete} ref={this.inputText} type={ type } style={{backgroundColor: "white"}}></input>
                 <div className="error-text" style={{ visibility: this.state.errorTextVisibility }}>{this.state.errorText}</div>
             </div>
         );

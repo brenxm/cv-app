@@ -62,9 +62,9 @@ class PersonalInfo extends React.Component {
         if (uploadInput.files[0] != undefined) {
             uploadInput.value = "";
 
-            this.input = React.createRef();
             this.setState({
-                deletePhotoStyle: "none"
+                deletePhotoStyle: "none",
+                uploadedPhoto: null
             })
         }
     }
