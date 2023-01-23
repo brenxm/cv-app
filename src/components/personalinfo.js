@@ -73,8 +73,7 @@ class PersonalInfo extends React.Component {
         this.inputs[elem.props.elemName] = elem;
     }
 
-    // Validate each inputs current value, returns an object with key as their element name and value for their value, if value is valid, it returns the value, if invalid, it returns false.
-
+    //***** AUTO COMPLETE IS DISABLED DUE TO CORS POLICY ******/
     async autoCompleteAddress(input) {
        
         let data = await autoCompleteData(input);
@@ -104,6 +103,7 @@ class PersonalInfo extends React.Component {
         });
     }
 
+    // END OF AUTO COMPLETE //
     render() {
         return (
             <form className="personalinfo-form" >
@@ -112,9 +112,7 @@ class PersonalInfo extends React.Component {
                     <SingleInput placeHolder="Doe" label="Last name *" elemName="lastName" createRef={this.createRefOfChild} required format={/^\D[\D\s]+\D$/i} properFormat={"Parker, bravo, poTtEr"} />
                 </div>
                 <div className="personalinfo-addressinput-cont">
-                    <SingleInput placeHolder="1234 Nicehome street" label="Address 1 *" elemName="addressOne" required createRef={this.createRefOfChild} format={/^[\s]*\d{1,10}\s[\D]+[\s\D]*$/i} properFormat={"1234 Back Street Bys"} defaultAutoComplete="off" autoComplete={this.autoCompleteAddress} />
-
-                    {this.state.selectionBox}
+                    <SingleInput placeHolder="1234 Nicehome street" label="Address 1 *" elemName="addressOne" required createRef={this.createRefOfChild} format={/^[\s]*\d{1,10}\s[\D]+[\s\D]*$/i} properFormat={"1234 Back Street Bys"}  autoComplete={this.autoCompleteAddress} />
 
                     <SingleInput placeHolder="" label="Address 2" elemName="addressTwo" createRef={this.createRefOfChild} format={/./} />
                 </div>

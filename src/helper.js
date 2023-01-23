@@ -61,7 +61,7 @@ function validateInputs(objInputs) {
 }
 
 async function autoCompleteData(input) {
-    let query = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=address&key=AIzaSyAtAMmoTnumHK8ZAO8fvN4d3tv1pj564ZQ`);
+    let query = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=address&key=API_KEY`);
 
     return query.json();
 }
